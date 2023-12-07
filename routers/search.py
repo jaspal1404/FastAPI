@@ -8,5 +8,6 @@ router = APIRouter()
 @router.get("/", status_code=status.HTTP_200_OK)
 async def search():
 
-    response = requests.get("https://redsky.target.com/redsky_aggregations/v1/apps/unified_search_v2?app_version=2023.49.0&channel=APPS&count=20&default_purchasability_filter=true&include_sponsored=true&keyword=bread&new_search=true&offset=0&os_family=iOS&page=/s/bread&pricing_context=digital&pricing_store_id=2766&spellcheck=true&store_id=2766&store_ids=2766%2C2766%2C2768%2C3264%2C2829%2C2767&visitor_id=018c36577ef501041A1083BD1D3945F7&key=1fc2d885b6a28c87af93e5818e382bef4ecda4dc")
+    headers = {'Content-Type': 'application/json', 'x-api-key': '1fc2d885b6a28c87af93e5818e382bef4ecda4dc'}
+    response = requests.get("https://redsky.target.com/redsky_aggregations/v1/apps/unified_search_v2?app_version=2023.49.0&channel=APPS&count=20&default_purchasability_filter=true&include_sponsored=true&key=3f015bca9bce7dbb2b377638fa5de0f229713c78&keyword=bread&new_search=true&offset=0&os_family=iOS&page=/s/bread&pricing_context=digital&pricing_store_id=664&spellcheck=true&store_id=664&store_ids=664%2C664%2C2223%2C100%2C3%2C693&visitor_id=018c36577ef501041A1083BD1D3945F7", headers=headers)
     return response.status_code
