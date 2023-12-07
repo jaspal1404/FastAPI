@@ -4,6 +4,7 @@ from starlette import status
 from models import Items
 from typing import Annotated
 from database import SessionLocal
+from sqlalchemy.orm import Session
 
 import requests
 
