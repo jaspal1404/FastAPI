@@ -1,7 +1,11 @@
 from fastapi import FastAPI
-from routers import search
+import models
+from database import engine
+from routers import shopping
 
 app = FastAPI()
 
+models.Base.metadata.create_all(bind=engine)
 
-app.include_router(search.router)
+
+app.include_router(shopping.router)
