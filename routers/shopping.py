@@ -64,6 +64,13 @@ async def get_item_by_name(db: db_dependency, item_name: str, delivery_method: s
 async def add_to_cart(item_id: str, delivery_method: str, quantity: int):
     auth_token = 'eyJraWQiOiJlYXMyIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiI0MDAwYTY1OS1iM2Y1LTQ4YjItOWYwMi0zZGYzNjkwMmU2NWUiLCJpc3MiOiJNSTYiLCJleHAiOjE3MDIwNzA0MDQsImlhdCI6MTcwMTk4NDAwNCwianRpIjoiVEdULjUwMmZiZDNhMzFjOTRkNTZiMjQ1ZjIzOTk5YmM0M2E4LWwiLCJza3kiOiJlYXMyIiwic3V0IjoiRyIsImRpZCI6IjAwQTg2MkFGLTAwQkUtNDgwNC1BNDk4LUE2NEQ5MTlFNjMwMyIsInNjbyI6ImVjb20ubm9uZSxvcGVuaWQiLCJjbGkiOiJlY29tLWlvcy0xLjAuMCIsImFzbCI6IkwifQ.dU0CLJJRm4SRIwFD_yNdJwqEPf03B0YmoyNz4QvKqsn_Fpj4YY8HUSRDHDvBZ43jC8plvKnNmVwoycsrJHZPCC5H1sW4GAGSOxicYWX5NvjV0uI_oboohHybNxXW6XwZ76lFVVrWfzxQPb6FZFpAic88-TxCN22v6XzBk8C2jmV1jSNJP-2SZI55OJOXIIe4wc4198sl-bo6eQe46pxrYWy1bTsabABguiHSxTTabSOZWxgac13KLHZSRJwSJAFDG8Fps-USh3fIGtvnRi4iJoIsdCabdqIN_XcEgPq818bIrc9Rjgq9XtjfFJo6vyaVgnaCgh7_ZNBoHatj2DIe7g'
 
+    if delivery_method == "driveup":
+        delivery_method = "CURBSIDE"
+    elif (delivery_method == "store pickup" or delivery_method == "pickup"):
+        delivery_method = "STORE_PICKUP"
+    else:
+        delivery_method = delivery_method
+
     headers = {'Authorization': f'Bearer {auth_token}'}
     data = {"cart_item": {"tcin": item_id, "quantity": quantity},
             "fulfillment": {"ship_method": delivery_method, "type": "PICKUP", "location_id": "664"},

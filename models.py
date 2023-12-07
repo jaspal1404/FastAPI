@@ -6,7 +6,7 @@ from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Float
 class Items(Base):
     __tablename__ = 'items'
 
-    id = Column(String)
+    id = Column(String, primary_key=True)
     name = Column(String)
     description = Column(String)
     brand = Column(String)
