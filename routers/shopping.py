@@ -57,9 +57,9 @@ async def get_item_by_name(db: db_dependency, item_name: str, delivery_method: s
 @router.get("/add-to-cart/", status_code=status.HTTP_200_OK)
 async def add_to_cart(item_id: str, delivery_method: str, quantity: int):
 
-    if delivery_method == "driveup":
+    if (delivery_method == "driveup" or delivery_method == "drive up"):
         delivery_method = "CURBSIDE"
-    elif (delivery_method == "store pickup" or delivery_method == "pickup"):
+    elif (delivery_method == "store pickup" or delivery_method == "pick up" or delivery_method == "pickup"):
         delivery_method = "STORE_PICKUP"
     else:
         delivery_method = delivery_method
