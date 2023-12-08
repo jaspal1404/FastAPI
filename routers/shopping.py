@@ -49,9 +49,9 @@ async def get_item_by_name(db: db_dependency, item_name: str, delivery_method: s
                 return {"response": False, "reason": "Item not available for " + delivery_method + ". Would you like to try a different delivery method ?"}
         else:
             if item.delivery_method == delivery_method:
-                return {"response": False, "reason": "Only " + str(quantity) + " units of the item available. Would you like to proceed ?"}
+                return {"response": False, "reason": "Only " + str(item.quantity) + " units of the item available. Would you like to proceed ?"}
             else:
-                return {"response": False, "reason": "Only " + str(quantity) + " units of the item available, but not available for " + delivery_method + ". Would you like to try a different delivery method ?"}
+                return {"response": False, "reason": "Only " + str(item.quantity) + " units of the item available, but not available for " + delivery_method + ". Would you like to try a different delivery method ?"}
 
 
 @router.get("/add-to-cart/", status_code=status.HTTP_200_OK)
