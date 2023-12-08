@@ -40,6 +40,9 @@ db_dependency = Annotated[Session, Depends(get_db)]
 @router.get("/get-item/", status_code=status.HTTP_200_OK)
 async def get_item_by_name(db: db_dependency, item_name: str, delivery_method: str, quantity: int):
 
+    print("item: " + item_name)
+    print("method: " + delivery_method)
+    print("quantity: " + str(quantity))
     item = db.query(Items).filter(Items.name == item_name).first()
     if item is None:
         return {"response": False, "reason": "Item not found! Would you like to try another item ?"}
