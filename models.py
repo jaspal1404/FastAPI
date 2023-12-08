@@ -28,4 +28,4 @@ def access_cart(item_id: str, delivery_method: str, quantity: int):
     url = 'https://carts.target.com/web_checkouts/v1/cart_items?iOSAppVersion=2023.49.0&key=3d4d4435710335df6435c68e19a7cf67c635a01d'
     response = requests.post(url, json=data, headers=headers)
 
-    return response
+    return response.status_code
